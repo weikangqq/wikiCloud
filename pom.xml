@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wiki</groupId>
+    <artifactId>wikiCloud</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <name>wiki-cloud</name>
+    <description>Wiki Cloud</description>
+
+
+    <parent>
+        <groupId>com.wiki</groupId>
+        <artifactId>wikiCloud-dependency</artifactId>
+        <version>1.0.0</version>
+        <relativePath>wikiCloud-dependency/pom.xml</relativePath>
+    </parent>
+
+
+
+    <modules>
+        <module>wikiCloud-dependency</module>
+        <module>wikiCloud-Base</module>
+        <module>wikiCloud-gateway</module>
+        <module>wikiCloud-modules</module>
+    </modules>
+
+
+</project>
