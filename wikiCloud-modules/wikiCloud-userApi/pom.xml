@@ -12,4 +12,11 @@
     <artifactId>wikiCloud-userApi</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.wiki</groupId>
+            <artifactId>wikiCloud-base-api</artifactId>
+        </dependency>
+
+    </dependencies>
 </project>

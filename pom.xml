@@ -20,6 +20,31 @@
         <relativePath>wikiCloud-dependency/pom.xml</relativePath>
     </parent>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.wiki</groupId>
+                <artifactId>wikiCloud-userApi</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wiki</groupId>
+                <artifactId>wikiCloud-base-api</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wiki</groupId>
+                <artifactId>wikiCloud-base-common</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wiki</groupId>
+                <artifactId>wikiCloud-base-server</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 
     <modules>
