@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 9220
+  port: 8001
 
 # Spring
 spring:
   application:
     # 应用名称
-    name: user-server
+    name: kafka-server
   profiles:
     # 环境配置
     active: dev
@@ -25,10 +25,7 @@ spring:
       kafka:
         binder:
           brokers: 192.168.3.152:9092,192.168.3.153:9092,192.168.3.153:9091
-      bindings:
-        receive-in-0:
-          destination: aaaa
-          group: wiki111
-      default-binder: kafka
-    function:
-      definition: receive
+          min-partition-count: 12
+  kafka:
+    consumer:
+      group-id: wiki111
