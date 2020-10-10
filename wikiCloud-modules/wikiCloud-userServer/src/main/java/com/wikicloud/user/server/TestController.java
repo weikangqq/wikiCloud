@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,13 @@ public class TestController {
     public String test(){
        List<Test> list=testService.list();
 //        redisTemplate.opsForValue().set("1",1);
+        for (int i=0;i<100;i++){
+            Test test=new Test();
+           test.setName(i+"_asd");
+            testService.save(test);
+
+            
+        }
         return list.size()+"";
     }
 

@@ -40,20 +40,20 @@ spring:
       gds:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://116.62.194.20:3306/sys?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://116.62.194.20:3306/test?useUnicode=true&characterEncoding=utf8
         username: root
         password: 123456
     sharding:
-      binding-tables: sys_config
+      binding-tables: test
       tables:
-        sys_config:
-          actual-data-nodes: gds.sys_config$->{0..2}
+        test:
+          actual-data-nodes: gds.test_$->{0..2}
           key-generator:
             column: id
             type: SNOWFLAKE
           table-strategy:
             inline:
-              algorithm-expression: sys_config$->{id % 3}
+              algorithm-expression: test_$->{id % 3}
               sharding-column: id
     props:
       sql:

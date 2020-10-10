@@ -6,16 +6,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName(value = "sys_config")
+@TableName(value = "test")
 public class Test {
 
-    String variable;
-
-    String value;
-
-    Date setTime;
-
-    Long setBy;
+    String name;
 
     Long id;
 }
