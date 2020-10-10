@@ -3,20 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>wikiCloud</artifactId>
+        <artifactId>wikiCloud-Base</artifactId>
         <groupId>com.wiki</groupId>
         <version>1.0.0</version>
     </parent>
-    <packaging>pom</packaging>
-    <modules>
-        <module>wikiCloud-base-api</module>
-        <module>wikiCloud-base-server</module>
-        <module>wikiCloud-base-common</module>
-        <module>wikiCloud-base-shardingjdbc</module>
-    </modules>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>wikiCloud-Base</artifactId>
+    <artifactId>wikiCloud-base-shardingjdbc</artifactId>
 
 
 </project>

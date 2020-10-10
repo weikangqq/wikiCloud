@@ -5,34 +5,30 @@ server:
 spring:
   application:
     # 应用名称
-    name: mall-ums
+    name: wiki-userServer
   cloud:
     nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: "http://116.62.194.20:8848"
+        namespace: wiki-dev
+        group: wiki-cloud
       config:
         # 配置中心地址
-        server-addr: "http://10.25.16.253:8848"
+        server-addr: "http://116.62.194.20:8848"
         # 配置文件格式
         file-extension: yml
         # 共享配置
-        namespace: dev
+        namespace: wiki-dev
+        group: wiki-cloud
         shared-configs:
           - dataId: mysql-common.yml
+            group: wiki-cloud
+            refresh: true
           - dataId: redis-common.yml
-          - dataId: mall-server-common.yml
-
-
-    inetutils:
-      preferred-networks: 10.25
-  profiles:
-    active: dev
-    stream:
-      kafka:
-        binder:
-          brokers: 192.168.3.152:9092,192.168.3.153:9092,192.168.3.153:9091
-      bindings:
-        receive-in-0:
-          destination: aaaa
-          group: wiki111
-      default-binder: kafka
-    function:
-      definition: receive
+            group: wiki-cloud
+            refresh: true
+          - dataId: base-server-common.yml
+            group: wiki-cloud
+            refresh: true
+        refresh-enabled: true
