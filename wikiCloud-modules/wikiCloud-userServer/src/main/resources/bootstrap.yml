@@ -44,12 +44,17 @@ spring:
         username: root
         password: 123456
     sharding:
-      default-table-strategy:
-        none:
-          shardingColumn: none
-      default-database-strategy:
-        none:
-          shardingColumn: none
+      binding-tables: sys_config
+      tables:
+        sys_config:
+          actual-data-nodes: gds.sys_config$->{0..2}
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              algorithm-expression: sys_config$->{id % 3}
+              sharding-column: id
     props:
       sql:
         show: true

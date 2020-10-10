@@ -16,4 +16,6 @@ public class Test {
     Date setTime;
 
     Long setBy;
+
+    Long id;
 }
