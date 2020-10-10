@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(value = {"com.wikicloud.*"})
+
 public class UserServerStart {
 
 

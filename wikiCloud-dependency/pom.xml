@@ -19,7 +19,7 @@
         <common-lang3>3.6</common-lang3>
         <swagger2.version>2.9.2</swagger2.version>
         <alibaba-fastjson.version>1.2.14</alibaba-fastjson.version>
-        <mybatis-plus>3.0.7.1</mybatis-plus>
+        <mybatis-plus>3.4.0</mybatis-plus>
         <sharding-sphere.version>4.0.0-RC1</sharding-sphere.version>
         <!--<sharding-sphere.version>3.0.0</sharding-sphere.version>-->
     </properties>
@@ -69,6 +69,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus}</version>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -103,6 +108,19 @@
                 <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
                 <version>${sharding-sphere.version}</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.21</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
