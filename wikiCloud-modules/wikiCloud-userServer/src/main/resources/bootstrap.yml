@@ -33,13 +33,31 @@ spring:
             refresh: true
         refresh-enabled: true
 
-#spring:
-  datasource:
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://116.62.194.20:3306/sys?useUnicode=true&characterEncoding=utf8
-    type: com.alibaba.druid.pool.DruidDataSource
+
+  shardingsphere:
+    datasource:
+      names: gds
+      gds:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://116.62.194.20:3306/sys?useUnicode=true&characterEncoding=utf8
+        username: root
+        password: 123456
+    sharding:
+      default-table-strategy:
+        none:
+          shardingColumn: none
+      default-database-strategy:
+        none:
+          shardingColumn: none
+    props:
+      sql:
+        show: true
+
+
+
+
+
 
 mybatis-plus:
   mapper-locations: classpath:com/wikicloud/*/serverr/mapper/*Mapper.xml

@@ -20,7 +20,7 @@
         <swagger2.version>2.9.2</swagger2.version>
         <alibaba-fastjson.version>1.2.14</alibaba-fastjson.version>
         <mybatis-plus>3.4.0</mybatis-plus>
-        <sharding-sphere.version>4.0.0-RC1</sharding-sphere.version>
+        <sharding-sphere.version>4.1.1</sharding-sphere.version>
         <!--<sharding-sphere.version>3.0.0</sharding-sphere.version>-->
     </properties>
 
