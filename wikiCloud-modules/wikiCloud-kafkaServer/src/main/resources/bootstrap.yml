@@ -24,8 +24,8 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 192.168.3.152:9092,192.168.3.153:9092,192.168.3.153:9091
-          min-partition-count: 12
+          brokers: 192.168.31.101:9092
+          min-partition-count: 3
   kafka:
     consumer:
       group-id: wiki111

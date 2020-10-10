@@ -1,26 +1,30 @@
 # Tomcat
 server:
-  port: 9220
-
+  port: 9210
 # Spring
 spring:
   application:
     # 应用名称
-    name: user-server
-  profiles:
-    # 环境配置
-    active: dev
+    name: mall-ums
   cloud:
     nacos:
-      discovery:
-        # 服务注册地址
-        server-addr: "http://116.62.194.20:8848"
       config:
         # 配置中心地址
-        server-addr: "http://116.62.194.20:8848"
+        server-addr: "http://10.25.16.253:8848"
         # 配置文件格式
-        # 共享配置
         file-extension: yml
+        # 共享配置
+        namespace: dev
+        shared-configs:
+          - dataId: mysql-common.yml
+          - dataId: redis-common.yml
+          - dataId: mall-server-common.yml
+
+
+    inetutils:
+      preferred-networks: 10.25
+  profiles:
+    active: dev
     stream:
       kafka:
         binder:
