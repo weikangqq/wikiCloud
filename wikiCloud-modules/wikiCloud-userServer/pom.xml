@@ -21,6 +21,8 @@
             <artifactId>spring-cloud-stream-binder-kafka</artifactId>
         </dependency>
 
+
+
     </dependencies>
 
 </project>

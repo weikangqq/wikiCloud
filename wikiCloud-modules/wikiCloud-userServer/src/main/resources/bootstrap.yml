@@ -32,3 +32,4 @@ spring:
             group: wiki-cloud
             refresh: true
         refresh-enabled: true
+
