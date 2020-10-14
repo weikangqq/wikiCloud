@@ -31,4 +31,7 @@ spring:
           - dataId: base-server-common.yml
             group: wiki-cloud
             refresh: true
+          - dataId: wikicloud-sentinel.yml
+            group: wiki-cloud
+            refresh: true
         refresh-enabled: true

@@ -47,6 +47,10 @@ public class TestController {
         }
         return list.size()+"";
     }
+    @GetMapping("test2")
+    public String test2(){
 
+        return "test2";
+    }
 
 }
