@@ -1,0 +1,38 @@
+# Tomcat
+server:
+  port: 9222
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: wiki-gateway
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: "http://116.62.194.20:8848"
+        namespace: wiki-dev
+        group: wiki-cloud
+      config:
+        # 配置中心地址
+        server-addr: "http://116.62.194.20:8848"
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        namespace: wiki-dev
+        group: wiki-cloud
+        shared-configs:
+          - dataId: mysql-common.yml
+            group: wiki-cloud
+            refresh: true
+          - dataId: redis-common.yml
+            group: wiki-cloud
+            refresh: true
+          - dataId: base-server-common.yml
+            group: wiki-cloud
+            refresh: true
+        refresh-enabled: true
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.31.101:9011

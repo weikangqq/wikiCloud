@@ -1,5 +1,7 @@
 package com.wikicloud.gateway.config;
 
+import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
+import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
@@ -12,8 +14,11 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
 
+import javax.annotation.PostConstruct;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Configuration
 public class GatewayConfiguration {
@@ -39,4 +44,28 @@ public class GatewayConfiguration {
    public GlobalFilter sentinelGatewayFilter() {
        return new SentinelGatewayFilter();
    }
+
+    /**
+     * 配置SentinelGatewayFilter
+     * @return
+     */
+
+
+    @PostConstruct
+    public void doInit() {
+        initGatewayRules();
+    }
+
+    /**
+     * 配置限流规则
+     */
+    private void initGatewayRules() {
+        Set<GatewayFlowRule> rules = new HashSet<>();
+        rules.add(new GatewayFlowRule("path_route")
+                .setCount(1) // 限流阈值
+                .setIntervalSec(1) // 统计时间窗口，单位是秒，默认是 1 秒
+        );
+        GatewayRuleManager.loadRules(rules);
+    }
+
 }

@@ -26,14 +26,14 @@ public class UserServerStart {
 
     }
 
-    @Bean
-    public Consumer<TestMQ> receive() {
-        return message -> {
-            System.out.println("******************");
-            System.out.println("At Sink2");
-            System.out.println("******************");
-            System.out.println("Received message " + JSON.toJSONString(message));
-        };
-    }
+//    @Bean
+//    public Consumer<TestMQ> receive() {
+//        return message -> {
+//            System.out.println("******************");
+//            System.out.println("At Sink2");
+//            System.out.println("******************");
+//            System.out.println("Received message " + JSON.toJSONString(message));
+//        };
+//    }
 
 }
