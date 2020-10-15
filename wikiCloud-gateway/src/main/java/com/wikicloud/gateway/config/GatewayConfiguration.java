@@ -4,6 +4,15 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
+import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
+import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.alibaba.nacos.api.PropertyKeyConst;
+import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.exception.NacosException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
@@ -13,11 +22,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
-
 import javax.annotation.PostConstruct;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 @Configuration
@@ -52,20 +60,50 @@ public class GatewayConfiguration {
 
 
     @PostConstruct
-    public void doInit() {
+    public void doInit() throws NacosException {
         initGatewayRules();
     }
+
+//    /**
+//     * 配置限流规则
+//     */
+//    private void initGatewayRules() throws NacosException {
+//      ConfigService configService=NacosConfigFactory.createConfigService("116.62.194.20:8848");
+//
+//        String rulesStr = configService.getConfig("wiki-gateway" + NacosConfigUtil.GATEWAY_FLOW_DATA_ID_POSTFIX,
+//                NacosConfigUtil.GROUP_ID, 3000);
+//        System.out.println(rulesStr);
+//        List<GatewayFlowRuleNacos> parseArray=JSONArray.parseArray(rulesStr,GatewayFlowRuleNacos.class);
+//
+//        List<GatewayFlowRuleNacos> list=parseArray.stream().filter(a -> a.getApp().equals("wiki-gateway")).collect(Collectors.toList());
+//
+//
+//        Set<GatewayFlowRule> rules = new HashSet<>();
+//        for (GatewayFlowRuleNacos a:list){
+//            rules.add(new GatewayFlowRule(a.getResource())
+//                    .setCount(a.getCount()) // 限流阈值
+//                    .setIntervalSec(a.getIntervalSec()));
+//        }
+//
+//        GatewayRuleManager.loadRules(rules);
+//    }
 
     /**
      * 配置限流规则
      */
     private void initGatewayRules() {
-        Set<GatewayFlowRule> rules = new HashSet<>();
-        rules.add(new GatewayFlowRule("path_route")
-                .setCount(1) // 限流阈值
-                .setIntervalSec(1) // 统计时间窗口，单位是秒，默认是 1 秒
-        );
-        GatewayRuleManager.loadRules(rules);
+        Properties properties = new Properties();
+        properties.put(PropertyKeyConst.SERVER_ADDR, "116.62.194.20:8848");
+        properties.put(PropertyKeyConst.NAMESPACE, "wiki-dev");
+
+        NacosDataSource<Set<GatewayFlowRule>> flowRuleDataSource = new NacosDataSource<>(properties, "SENTINEL_GROUP", "wiki-gateway-rules",
+                source -> JSON.parseObject(source, new TypeReference<Set<GatewayFlowRule>>() {
+                }));
+        GatewayRuleManager.register2Property(flowRuleDataSource.getProperty());
     }
 
+//    @Bean
+//    public Converter<List<ApiDefinitionEntity>, String> apiDefinitionEntityEncoder() {
+//        return JSON::toJSONString;
+//    }
 }
