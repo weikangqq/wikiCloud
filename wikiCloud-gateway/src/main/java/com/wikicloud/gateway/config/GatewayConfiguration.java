@@ -10,7 +10,6 @@ import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.api.PropertyKeyConst;
-import com.alibaba.nacos.api.exception.NacosException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,10 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
 import javax.annotation.PostConstruct;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
 
 @Configuration
 public class GatewayConfiguration {
