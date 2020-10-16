@@ -1,7 +1,7 @@
 package com.wikicloud.user.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wikicloud.userapi.model.Test;
+import com.wikicloud.user.model.User;
 
-public interface TestMapper  extends BaseMapper<Test> {
+public interface UserMapper extends BaseMapper<User> {
 }

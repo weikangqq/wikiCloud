@@ -12,12 +12,6 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
-
-      routes: #当访问http://localhost:8080/baidu,直接转发到https://www.baidu.com/
-        - id: baidu_route
-          uri: http://baidu.com:80/
-          predicates:
-            - Path=/baidu
     nacos:
       discovery:
         # 服务注册地址
@@ -52,14 +46,12 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
 logging: ## Spring Cloud Gateway的日志配置
   level:
     org.springframework.cloud.gateway: TRACE
     org.springframework.http.server.reactive: DEBUG
     org.springframework.web.reactive: DEBUG
     reactor.ipc.netty: DEBUG
-
 
 management:
   endpoints:

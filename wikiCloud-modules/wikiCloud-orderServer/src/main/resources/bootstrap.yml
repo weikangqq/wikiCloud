@@ -1,11 +1,11 @@
 # Tomcat
 server:
-  port: 9210
+  port: 9211
 # Spring
 spring:
   application:
     # 应用名称
-    name: wiki-userServer
+    name: wiki-orderServer
   cloud:
     nacos:
       discovery:
@@ -31,12 +31,9 @@ spring:
           - dataId: base-server-common.yml
             group: wiki-cloud
             refresh: true
-#          - dataId: wikicloud-sentinel.yml
-#            group: wiki-cloud
-#            refresh: true
+          - dataId: wikicloud-sentinel.yml
+            group: wiki-cloud
+            refresh: true
         refresh-enabled: true
     sentinel:
-      transport:
-        dashboard: localhost:8080 #指定Sentinel DashBoard服务地址
-        port: 6655
       enabled: true
