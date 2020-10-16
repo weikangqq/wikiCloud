@@ -12,15 +12,12 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
-      routes:
-        - id: product_center
-          uri: lb://product-center
+
+      routes: #当访问http://localhost:8080/baidu,直接转发到https://www.baidu.com/
+        - id: baidu_route
+          uri: http://baidu.com:80/
           predicates:
-            - Path=/product/**
-        - id: order_center
-          uri: lb://order-center
-          predicates:
-            - Path=/order/**
+            - Path=/baidu
     nacos:
       discovery:
         # 服务注册地址
@@ -51,15 +48,22 @@ spring:
         dashboard: 192.168.3.89:8080 #指定Sentinel DashBoard服务地址
         port: 6656
       enabled: true
-      datasource:
-        # 名称随意
-          nacos:
-            namespace: wiki-dev
-            server-addr: 116.62.194.20:8848
-            dataId: wiki-gateway-flow-rules # 在修改的sentinel 源码中定义的规则名
-            groupId: SENTINEL_GROUP
-            rule-type: flow
-            data-type: json
 
   main:
     allow-bean-definition-overriding: true
+
+
+logging: ## Spring Cloud Gateway的日志配置
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
