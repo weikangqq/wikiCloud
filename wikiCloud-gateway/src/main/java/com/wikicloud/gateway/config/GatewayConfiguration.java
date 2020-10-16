@@ -1,5 +1,7 @@
 package com.wikicloud.gateway.config;
 
+import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition;
+import com.alibaba.csp.sentinel.adapter.gateway.common.api.GatewayApiDefinitionManager;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
@@ -71,6 +73,11 @@ public class GatewayConfiguration {
                 source -> JSON.parseObject(source, new TypeReference<Set<GatewayFlowRule>>() {
                 }));
         GatewayRuleManager.register2Property(flowRuleDataSource.getProperty());
+
+        NacosDataSource<Set<ApiDefinition>> apiNacosDataSource = new NacosDataSource<>(properties, "SENTINEL_GROUP", "wiki-gateway-api",
+                source -> JSON.parseObject(source, new TypeReference<Set<ApiDefinition>>() {
+                }));
+        GatewayApiDefinitionManager.register2Property(apiNacosDataSource.getProperty());
     }
 
 //    @Bean
