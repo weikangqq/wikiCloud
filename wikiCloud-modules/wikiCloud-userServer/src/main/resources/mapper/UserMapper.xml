@@ -3,7 +3,10 @@
 <mapper namespace="com.wikicloud.user.server.mapper.UserMapper">
 
     <select id="selectAll" resultType="com.wikicloud.user.model.User">
-         select * from user;
+         select * from user
     </select>
 
+    <select id="selectPage" resultType="com.wikicloud.user.model.User">
+        select * from user
+    </select>
 </mapper>

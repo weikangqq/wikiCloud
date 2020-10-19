@@ -1,5 +1,6 @@
 package com.wikicloud.user.server.api.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wikicloud.base.common.response.Rs;
 import com.wikicloud.user.api.UserApi;
 import com.wikicloud.user.model.User;
@@ -26,6 +27,14 @@ public class UserApiImpl implements UserApi {
     public Rs<List<User>> list() {
 
         return  Rs.success(userService.selectAll());
+    }
+    @Override
+    public Page<User> getPage() {
+        Page page=new Page();
+        page.setSize(5);
+        page.setPages(1);
+
+        return userService.getPage(page);
     }
 
 }

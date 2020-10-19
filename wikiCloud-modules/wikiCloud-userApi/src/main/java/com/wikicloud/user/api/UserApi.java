@@ -1,12 +1,12 @@
 package com.wikicloud.user.api;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wikicloud.base.common.response.Rs;
 import com.wikicloud.user.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 
 @FeignClient(value = "wiki-userServer",path = UserApi.mapping)
@@ -20,5 +20,6 @@ public interface UserApi {
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     Rs<List<User>> list();
 
-
+    @RequestMapping(method = RequestMethod.GET, value = "/listPage")
+    Page<User> getPage();
 }
