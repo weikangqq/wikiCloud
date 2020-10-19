@@ -3,11 +3,11 @@ package com.wikicloud.user.server.web;
 import com.wikicloud.user.model.User;
 import com.wikicloud.user.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +20,7 @@ public class UserController {
 
 
     @GetMapping("addBatch")
+    @Transactional
     public void addBatch(){
         List<User> list=new ArrayList<>();
         for(int i=0;i<100;i++){
