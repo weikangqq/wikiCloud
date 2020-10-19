@@ -1,12 +1,12 @@
 package com.wikicloud.user.server.api.impl;
 
-import com.wikicloud.user.server.service.UserService;
+import com.wikicloud.base.common.response.Rs;
 import com.wikicloud.user.api.UserApi;
 import com.wikicloud.user.model.User;
+import com.wikicloud.user.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,19 +18,14 @@ public class UserApiImpl implements UserApi {
     private UserService userService;
 
     @Override
-    public User getUserById(Long id) {
-        return userService.getById(id);
+    public Rs<User> getUserById(Long id) {
+        return Rs.success(userService.getById(id));
     }
 
     @Override
-    public Flux<User> list() {
-        return  Flux.fromIterable(userService.list());
-    }
+    public Rs<List<User>> list() {
 
-    @Override
-    public Mono<User> get() {
-
-        return Mono.just(userService.getById(1L));
+        return  Rs.success(userService.selectAll());
     }
 
 }

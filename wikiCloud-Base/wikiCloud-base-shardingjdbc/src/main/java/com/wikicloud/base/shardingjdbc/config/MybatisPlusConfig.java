@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @Configuration
-@MapperScan("com.wikicloud.user.server.mapper")
+@MapperScan("com.wikicloud.*.server.mapper")
 public class MybatisPlusConfig {
 
     /**

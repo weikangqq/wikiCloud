@@ -17,6 +17,10 @@
             <groupId>com.wiki</groupId>
             <artifactId>wikiCloud-base-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.wiki</groupId>
+            <artifactId>wikiCloud-base-common</artifactId>
+        </dependency>
 
 
     </dependencies>

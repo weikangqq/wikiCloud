@@ -43,3 +43,5 @@ rebel.xml
 !*/build/*.html
 !*/build/*.xml
 */mall-common-code/*.properties
+
+*/*/src/resources/rebel.xml
